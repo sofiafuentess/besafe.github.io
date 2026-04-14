@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B-SAFE: Explora Seguro</title>
+    <!-- Fonts: Space Grotesk for Headings, Inter for Body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Flatpickr (Airbnb style) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://npmcdn.com/flatpickr/dist/themes/airbnb.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header class="navbar">
+        <div class="logo">
+            <h1>B-SAFE</h1>
+        </div>
+        <nav class="nav-links">
+            <a href="#" class="active">Inicio</a>
+            <a href="#">Planes</a>
+            <a href="#">Cómo Funciona</a>
+            <a href="#">FAQ</a>
+            <a href="#" class="btn-tertiary">PLANES CORPORATIVOS</a>
+        </nav>
+        <div class="nav-actions">
+            <button id="theme-toggle" class="icon-btn" aria-label="Cambiar modo oscuro">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+            <div class="lang-toggle">
+                <span class="active">ES</span> | <span>EN</span>
+            </div>
+            <button class="btn-primary" onclick="openCart()">RESERVA</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg" style="background-image: url('assets/hero_bg.png');"></div>
+        <div class="hero-content">
+            <h1 class="display-lg">
+                EXPLORA LEJOS,<br>
+                <span class="text-primary">VUELVE SEGURO.</span>
+            </h1>
+            <p class="subtitle">Arriendo de GPS satelital Garmin inReach.</p>
+            <p class="sub-subtitle">Democratizamos la seguridad en montaña para que nunca estés solo.</p>
+            
+            <!-- Date Picker Widget -->
+            <div class="hero-date-picker">
+                <div class="date-input-group">
+                    <label>Retiro</label>
+                    <input type="date" id="date-start" min="">
+                </div>
+                <div class="date-input-group">
+                    <label>Devolución</label>
+                    <input type="date" id="date-end" min="">
+                </div>
+                <div class="date-price-calc" style="align-items: center; justify-content: space-between; display: flex; width: 100%; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 1rem; margin-top: 1rem;">
+                    <div>
+                        <span class="calc-label" style="display: block; font-size: 0.8rem; color: var(--on-surface-variant);">Total estimado:</span>
+                        <span class="calc-price" id="calc-fast-total" style="font-size: 1.5rem; font-weight: 700; color: var(--primary);">---</span>
+                    </div>
+                    <button class="btn-primary shadow-ambient" onclick="openCart()" style="padding: 0.75rem 1.5rem;">CONTINUAR <i class="fa-solid fa-arrow-right ml-sm"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="features-text">
+            <h2 class="headline-md text-secondary">SEGURIDAD SIN LÍMITES</h2>
+            <p class="body-lg">La tecnología líder en rescate global, ahora al alcance de tu mano.<br>El Garmin inReach Mini 2 es tu compañero esencial en cada ruta.</p>
+            
+            <div class="features-grid">
+                <div class="feature-item">
+                    <i class="fa-solid fa-earth-americas feature-icon"></i>
+                    <div>
+                        <h3 class="title-md">Cobertura Global</h3>
+                        <p class="body-sm">Red de satélites Iridium. Cobertura total donde el celular no llega.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <i class="fa-solid fa-asterisk feature-icon"></i>
+                    <div>
+                        <h3 class="title-md">SOS 24/7</h3>
+                        <p class="body-sm">Centro de respuesta internacional listo para coordinar tu rescate.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <i class="fa-solid fa-check-circle feature-icon"></i>
+                    <div>
+                        <h3 class="title-md">Check-ins Ilimitados</h3>
+                        <p class="body-sm">Avisa que estás bien sin costo adicional. Siempre conectado.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <i class="fa-solid fa-bolt feature-icon"></i>
+                    <div>
+                        <h3 class="title-md">Configuración Cero Fricción</h3>
+                        <p class="body-sm">Entregamos el equipo configurado y listo para la acción.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <i class="fa-solid fa-box-archive feature-icon"></i>
+                    <div>
+                        <h3 class="title-md">Retiro 24/7</h3>
+                        <p class="body-sm">Retira y devuelve en puntos estratégicos en todo Santiago.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <i class="fa-solid fa-people-arrows feature-icon"></i>
+                    <div>
+                        <h3 class="title-md">Tranquilidad Familiar</h3>
+                        <p class="body-sm">Tus seres queridos siguen tu ruta en tiempo real desde casa.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="features-image">
+            <img src="assets/gps_device.png" alt="Garmin inReach Mini 2 GPS" class="device-glow">
+        </div>
+    </section>
+
+    <!-- 3 Steps Section -->
+    <section class="steps">
+        <h2 class="headline-md text-secondary text-center">TU AVENTURA EN 3 PASOS</h2>
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fa-regular fa-calendar-check"></i>
+                </div>
+                <h3 class="title-md text-secondary">RESERVA ONLINE</h3>
+                <p class="body-md">Selecciona las fechas y paga online. Proceso 100% digital y rápido.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fa-solid fa-box-open"></i>
+                </div>
+                <h3 class="title-md text-secondary">RETIRO EN BLUE EXPRESS</h3>
+                <p class="body-md">Retira tu kit B-SAFE en el punto más cercano. Sin esperas, sin complicaciones.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fa-solid fa-person-hiking"></i>
+                </div>
+                <h3 class="title-md text-secondary">EXPLORA Y VUELVE SEGURO</h3>
+                <p class="body-md">Disfruta la montaña con respaldo satelital. Al volver, lo dejas en el mismo punto.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing">
+        <h2 class="headline-md text-secondary text-center">PLANES FLEXIBLES</h2>
+        <p class="body-md text-center text-variant mb-xl">Tarifas dinámicas que se ajustan exactamente a la duración de tu expedición.</p>
+        
+        <div class="pricing-list">
+            <!-- 1. Express -->
+            <div class="pricing-list-item">
+                <div class="p-info">
+                    <h3 class="title-md text-secondary">Express</h3>
+                    <p class="body-sm text-variant">Ideal para cerros por el día.</p>
+                </div>
+                <div class="p-duration">
+                    <span class="body-md" style="font-weight: 600; color: var(--secondary);">1 día</span>
+                </div>
+                <div class="p-price">
+                    <span class="title-lg text-primary">$9.990</span>
+                    <span class="body-xs text-variant">Tarifa Total</span>
+                </div>
+            </div>
+
+            <!-- 2. Escapada -->
+            <div class="pricing-list-item popular-row">
+                <div class="popular-badge-row">MÁS POPULAR</div>
+                <div class="p-info">
+                    <h3 class="title-md text-secondary">Escapada / Finde</h3>
+                    <p class="body-sm text-variant">Fin de semana o puente festivo.</p>
+                </div>
+                <div class="p-duration">
+                    <span class="body-md" style="font-weight: 600; color: var(--secondary);">2 días</span>
+                </div>
+                <div class="p-price">
+                    <span class="title-lg text-primary">$16.990</span>
+                    <span class="body-xs text-variant">Tarifa Total</span>
+                </div>
+            </div>
+
+            <!-- 3. Aventura 3 dias -->
+            <div class="pricing-list-item">
+                <div class="p-info">
+                    <h3 class="title-md text-secondary">Aventura</h3>
+                    <p class="body-sm text-variant">Travesías tipo Torres del Paine.</p>
+                </div>
+                <div class="p-duration">
+                    <span class="body-md" style="font-weight: 600; color: var(--secondary);">3 días</span>
+                </div>
+                <div class="p-price">
+                    <span class="title-lg text-primary">$23.990</span>
+                    <span class="body-xs text-variant">Tarifa Total</span>
+                </div>
+            </div>
+
+            <!-- 4. Aventura Media -->
+            <div class="pricing-list-item" style="background: transparent;">
+                <div class="p-info">
+                    <h3 class="title-md text-secondary">Aventura Media</h3>
+                    <p class="body-sm text-variant">Travesías tipo Torres del Paine o del sur.</p>
+                </div>
+                <div class="p-duration">
+                    <span class="body-md" style="font-weight: 600; color: var(--secondary);">4 a 10 días</span>
+                </div>
+                <div class="p-price">
+                    <span class="title-lg" style="color: var(--secondary);">$6.990</span>
+                    <span class="body-xs text-variant">/ por día extra</span>
+                </div>
+            </div>
+
+            <!-- 5. Expedición -->
+            <div class="pricing-list-item" style="background: transparent;">
+                <div class="p-info">
+                    <h3 class="title-md text-secondary">Expedición Extrema</h3>
+                    <p class="body-sm text-variant">Alta montaña o viajes prolongados remotos.</p>
+                </div>
+                <div class="p-duration">
+                    <span class="body-md" style="font-weight: 600; color: var(--secondary);">11+ días</span>
+                </div>
+                <div class="p-price">
+                    <span class="title-lg" style="color: var(--secondary);">$6.490</span>
+                    <span class="body-xs text-variant">/ por día extra</span>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem;">
+            <button class="btn-primary btn-xl glow-hover open-cart-btn" data-plan="diario">CALCULAR TU ARRIENDO ONLINE</button>
+        </div>
+        <p class="body-xs text-center mt-md" style="font-style: italic; color: var(--on-surface-variant); opacity: 0.7;">Nota: Los valores no incluyen garantía ($50.000 reembolsables). Despacho vía Blue Express se cotiza en el Checkout.</p>
+    </section>
+
+    <!-- Emotional / Family Section -->
+    <section class="family-section">
+        <div class="family-image-wrapper">
+            <img src="assets/family_safety.png" alt="Familia feliz" class="family-image">
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <div class="avatar"><i class="fa-solid fa-user"></i></div>
+                    <div>
+                        <p class="body-sm" style="font-weight: 600;">Asher (via Satellite)</p>
+                        <p class="body-xs text-variant">Hace 2 minutos</p>
+                    </div>
+                </div>
+                <p class="body-sm" style="font-style: italic;">"Llegué a la cumbre El Plomo! Todo OK. - Juan"</p>
+                <div class="signal-chip mt-sm">
+                    <span class="signal-dot"></span>
+                    <span class="body-xs">Ver ubicación en vivo</span>
+                </div>
+            </div>
+        </div>
+        <div class="family-text">
+            <h2 class="headline-lg text-secondary">La paz mental de tus familiares y amistades lo vale</h2>
+            <p class="body-lg text-variant mt-md">Diles "estoy bien" desde cualquier rincón de la cordillera. Rompe el silencio de la montaña y mantén a tu familia tranquila mientras cumples tus sueños.</p>
+            <div class="trust-stats mt-lg">
+                <div class="avatars-group">
+                    <div class="trust-av"></div>
+                    <div class="trust-av"></div>
+                    <div class="trust-av"></div>
+                </div>
+                <p class="body-sm text-variant">+500 montañistas confían en B-SAFE cada mes</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <h2 class="headline-md text-secondary text-center mb-xl">PREGUNTAS FRECUENTES</h2>
+        <div class="faq-container">
+            <div class="faq-item expanded">
+                <div class="faq-question">
+                    <p class="title-md">¿Tengo cobertura solo en Chile o en todo el mundo?</p>
+                    <i class="fa-solid fa-chevron-up"></i>
+                </div>
+                <div class="faq-answer">
+                    <p class="body-md text-variant">Cobertura verdaderamente global. Utilizamos la red de satélites Iridium, la única con cobertura de polo a polo. Tu equipo funcionará exactamente igual en el desierto de Atacama, la cordillera de los Andes, la Antártica o el Himalaya.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <p class="title-md">¿Cómo funciona el depósito de seguridad?</p>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p class="body-md text-variant">Al momento de realizar el pago de tu arriendo, se bloquea temporalmente un depósito en garantía ($50.000). Una vez entregues el kit al finalizar tu expedición en las mismas condiciones, se devuelve automáticamente a tu medio de pago.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <p class="title-md">¿Qué pasa si tengo que usar el botón SOS en la montaña?</p>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p class="body-md text-variant">Estás 100% respaldado. Al presionar el botón SOS, te comunicarás en tiempo real vía texto satelital con el Garmin Response Center de Texas (24/7). Ellos se coordinarán directamente con los servicios de emergencia de tu área local, como patrullas de rescate, Socorro Andino o evacuación médica para ir a tu ubicación exacta.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <p class="title-md">¿Es difícil de usar si nunca he tenido un GPS satelital?</p>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p class="body-md text-variant">Cero fricciones. Te entregamos el dispositivo previamente configurado y listo para la acción. Además, se enlaza por Bluetooth a tu celular, por lo que podrás escribir mensajes a tus familiares tal como si estuvieras usando WhatsApp o ver mapas directamente en tu pantalla móvil mediante la app Garmin Explore.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Footer -->
+    <section class="cta-banner" style="background-image: linear-gradient(rgba(54, 69, 79, 0.8), rgba(54, 69, 79, 0.8)), url('assets/hero_bg.png');">
+        <h2 class="display-md text-center text-white">No arriesgues tu vida ni la<br>tranquilidad de tu familia.</h2>
+        <button class="btn-primary mt-lg btn-xl shadow-ambient glow-hover">RESERVA AHORA Y EXPLORA SEGURO</button>
+        <p class="body-sm text-white mt-md">Equipos limitados para este fin de semana. ¡Reserva con tiempo!</p>
+        
+        <div class="alliances mt-xl">
+            <p class="body-xs text-center mb-md" style="letter-spacing: 2px;">NUESTRAS ALIANZAS</p>
+            <div class="alliance-logos">
+                <span>Club Alemán Andino</span>
+                <span>DAV Chile</span>
+                <span><i class="fa-solid fa-cross text-primary"></i> Socorro Andino Chileno</span>
+                <span>Federación de Andinismo</span>
+                <span>Gendarmería</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h2 class="title-lg text-white">B-SAFE</h2>
+                <p class="body-sm mt-sm" style="color: rgba(255,255,255,0.7);">Seguridad Satelital para los Andes.<br>Liderando la seguridad satelital en Chile desde 2023.</p>
+            </div>
+            <div class="footer-links">
+                <p class="title-sm text-white mb-sm">SERVICIOS</p>
+                <a href="#">Arriendo Individual</a>
+                <a href="#">Planes Corporativos</a>
+                <a href="#">Venta de Equipos</a>
+            </div>
+            <div class="footer-links">
+                <p class="title-sm text-white mb-sm">COMPAÑÍA</p>
+                <a href="#">Términos</a>
+                <a href="#">Privacidad</a>
+                <a href="#">Contacto</a>
+            </div>
+            <div class="footer-social">
+                <p class="title-sm text-white mb-sm">SÍGUENOS</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="body-xs" style="color: rgba(255,255,255,0.4);">© 2026 B-SAFE. Seguridad y Trascendencia. Sin límites.</p>
+        </div>
+    </footer>
+
+    <!-- Mobile Sticky Bottom Bar -->
+    <div class="mobile-bottom-bar">
+        <div class="mobile-bar-price">
+            <span class="body-xs">Desde</span>
+            <span class="title-md font-display" style="color: white;">$9.900 <span class="body-xs font-inter font-normal">/día</span></span>
+        </div>
+        <button class="btn-primary" onclick="document.querySelector('#cart-drawer').classList.add('open'); document.getElementById('cart-backdrop').classList.add('open')">Reservar Kit</button>
+    </div>
+
+    <!-- Off-canvas Cart / Booking Drawer -->
+    <div class="cart-backdrop" id="cart-backdrop"></div>
+    <div class="cart-drawer" id="cart-drawer">
+        <div class="cart-header">
+            <h3 class="headline-md text-secondary">Tu Reserva</h3>
+            <button class="icon-btn" id="close-cart"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="cart-body">
+            <!-- Paginador de Pasos -->
+            <div class="checkout-steps mb-lg">
+                <div class="step-indicator active" id="indicator-step1">1. Reserva</div>
+                <div class="step-indicator" id="indicator-step2">2. Tus Datos</div>
+                <div class="step-indicator" id="indicator-step3">3. Pago</div>
+            </div>
+
+            <form id="checkout-form">
+                <!-- PASO 1: Fechas y Costos -->
+                <div class="checkout-step active" id="step-1">
+                    <p class="body-md text-variant mb-md">Configura las fechas de tu expedición.</p>
+                    <div class="cart-item">
+                        <div class="cart-item-info">
+                            <h4 class="title-md text-secondary">Kit Garmin inReach Mini 2</h4>
+                            <p class="body-xs text-variant mt-xs mb-xs" style="background: rgba(255,95,31,0.05); padding: 8px; border-radius: 4px;">
+                                <i class="fa-solid fa-satellite-dish text-primary"></i> S.O.S Satelital Ilimitado. 3 Check-ins Ilimitados.<br>
+                                Incluye 10 SMS libres (Cobro de excedente: $600 CLP c/u deducibles).
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="cart-dates mt-md">
+                        <div class="date-input-group">
+                            <label>Retiro</label>
+                            <input type="date" id="cart-date-start" class="cart-input" required>
+                        </div>
+                        <div class="date-input-group">
+                            <label>Devolución</label>
+                            <input type="date" id="cart-date-end" class="cart-input" required>
+                        </div>
+                    </div>
+
+                    <div class="cart-summary mt-lg">
+                        <div class="summary-row">
+                            <span class="body-md">Subtotal Arriendo (<span id="cart-days">0</span> días)</span>
+                            <span class="body-md text-secondary" style="font-weight: 600;" id="cart-cost">$0</span>
+                        </div>
+                        <div class="summary-row mt-sm" id="row-logistics" style="display: none;">
+                            <span class="body-sm text-variant">Despacho y Retorno Prepago</span>
+                            <span class="body-sm text-variant" id="cart-logistics">$0</span>
+                        </div>
+                        <hr style="margin: 1rem 0; border: none; border-top: 1px dashed var(--outline-variant);">
+                        <div class="summary-row" style="margin-bottom: 0.8rem;">
+                            <span class="title-md text-secondary">A PAGAR HOY</span>
+                            <span class="title-lg text-primary" id="cart-total">$0</span>
+                        </div>
+                        <div class="summary-row" style="background: rgba(255,95,31,0.05); padding: 12px; border-radius: 8px; border: 1px solid rgba(255,95,31,0.1);">
+                            <div>
+                                <span class="body-sm text-primary" style="font-weight: 600;"><i class="fa-solid fa-shield-halved"></i> Garantía (Reembolsable)</span>
+                                <p class="body-xs text-variant mt-xs" style="line-height: 1.2;">Retención congelada en tarjeta.</p>
+                            </div>
+                            <span class="body-sm text-primary" style="font-weight: 600;">$50.000</span>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-primary btn-xl mt-lg next-step-btn" data-target="step-2" style="width: 100%;">Continuar <i class="fa-solid fa-arrow-right ml-sm"></i></button>
+                </div>
+
+                <!-- PASO 2: Datos Clínicos y Confianza -->
+                <div class="checkout-step" id="step-2">
+                    <p class="body-md text-variant mb-md">La seguridad es lo primero. Estos datos solo serán compartidos con servicios de emergencia si activas el botón SOS.</p>
+                    
+                    <div class="form-group mb-sm">
+                        <label class="body-sm text-secondary font-semibold">Nombre Completo</label>
+                        <input type="text" class="custom-input" placeholder="Ej. Juan Pérez" required id="user-name">
+                    </div>
+                    <div class="form-row mb-sm">
+                        <div class="form-group">
+                            <label class="body-sm text-secondary font-semibold">Email</label>
+                            <input type="email" class="custom-input" placeholder="correo@ejemplo.com" required id="user-email">
+                        </div>
+                        <div class="form-group">
+                            <label class="body-sm text-secondary font-semibold">RUT o Pasaporte</label>
+                            <input type="text" class="custom-input" placeholder="12.345.678-9" required id="user-rut">
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-md mt-md">
+                        <label class="body-sm text-secondary font-semibold"><i class="fa-solid fa-box-open"></i> Modalidad de Recepción del Equipo</label>
+                        <div class="logistics-options mt-sm" style="display: flex; flex-direction: column; gap: 0.5rem;">
+                            <label style="display: flex; align-items: center; gap: 10px; padding: 10px; border: 1px solid var(--outline-variant); border-radius: 8px; cursor: pointer;">
+                                <input type="radio" name="logistics_type" value="pickup" checked id="logistics-pickup">
+                                <span class="body-sm"><b>Retiro en Santiago Centro</b> (Gratis)</span>
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 10px; padding: 10px; border: 1px solid var(--outline-variant); border-radius: 8px; cursor: pointer;">
+                                <input type="radio" name="logistics_type" value="delivery" id="logistics-delivery">
+                                <span class="body-sm"><b>Cotizar Despacho a Domicilio</b> / Punto Blue Express (Añade Etiqueta Prepago Automática)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="step-actions mt-md">
+                        <button type="button" class="btn-outline-variant prev-step-btn" data-target="step-1">Atrás</button>
+                        <button type="button" class="btn-primary next-step-btn" data-target="step-3" style="flex: 1;">Ir a Pagar</button>
+                    </div>
+                </div>
+
+                <!-- PASO 3: Pasarelas de Pago -->
+                <div class="checkout-step" id="step-3">
+                    <div class="final-summary mb-md" style="text-align: center; padding: 1.5rem; background: var(--surface-container-low); border-radius: 12px;">
+                        <p class="body-md text-secondary">A Pagar Hoy</p>
+                        <h2 class="display-md text-primary" id="final-checkout-total">$0</h2>
+                        <div class="mt-sm" style="display: inline-block; background: rgba(255,95,31,0.1); padding: 4px 12px; border-radius: 999px;">
+                            <p class="body-xs text-primary" style="font-weight: 600;"><i class="fa-solid fa-lock"></i> Se retendrán $50.000 adicionales por garantía.</p>
+                        </div>
+                        <p class="body-xs text-variant mt-md"><i class="fa-solid fa-shield-check"></i> Conexión bancaria 100% encriptada</p>
+                    </div>
+
+                    <div class="legal-consent mb-lg" style="background: var(--surface-container-high); padding: 10px; border-radius: 8px;">
+                        <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
+                            <input type="checkbox" id="legal-checkbox" style="margin-top: 4px;" required>
+                            <span class="body-xs text-variant">He leído y acepto que <b>la garantía de $50.000 cubre excedentes de mensajería y daños menores</b>. Acepto la responsabilidad total por el valor de reposición del equipo en caso de pérdida o robo.</span>
+                        </label>
+                    </div>
+
+                    <p class="body-sm text-center text-variant mb-md">Selecciona tu método de pago</p>
+
+                    <div class="payment-methods">
+                        <button type="button" class="payment-btn webpay-btn" onclick="simulatePayment('Webpay')">
+                            <span class="btn-content">Pagar con Webpay Plus <img src="https://tbk.azureedge.net/img/wpp_p_ch-45.png" alt="Webpay" style="height:20px; display:inline-block; vertical-align:middle; margin-left:8px;"></span>
+                        </button>
+                        <button type="button" class="payment-btn mercadopago-btn mt-md" onclick="simulatePayment('MercadoPago')">
+                            <span class="btn-content">Pagar con MercadoPago <i class="fa-solid fa-handshake" style="margin-left:8px;"></i></span>
+                        </button>
+                    </div>
+
+                    <div class="step-actions mt-xl">
+                        <button type="button" class="btn-outline-variant prev-step-btn" data-target="step-2" style="width:100%;">Volver a Datos</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Portal Onboarding Post-Reserva (Plug & Play) -->
+    <div class="onboarding-portal" id="onboarding-portal">
+        <div class="onboarding-content">
+            <div class="onboarding-header">
+                <div class="ob-icon-wrapper"><i class="fa-solid fa-satellite-dish"></i></div>
+                <h2 class="display-md text-secondary">Prepara tu Expedición</h2>
+                <p class="body-sm text-variant mt-sm">Tu pago fue exitoso. Ayúdanos completando estos datos para entregarte el dispositivo 100% configurado y listo para la aventura (Plug & Play).</p>
+            </div>
+
+            <form id="onboarding-form">
+                <!-- 1. Ruta -->
+                <div class="conf-box">
+                    <h3 class="conf-title"><i class="fa-solid fa-map-location-dot text-primary"></i> 1. Tu Destino y Ruta</h3>
+                    <div class="conf-input-group">
+                        <label>Nombre del Parque, Cerro o Destino</label>
+                        <input type="text" placeholder="Ej: Cerro El Plomo, Ascensión normal" required>
+                    </div>
+                    <div class="conf-input-group">
+                        <label>Link de Ruta (Opcional)</label>
+                        <input type="url" placeholder="Pega aquí el enlace de Wikiloc o AllTrails">
+                        <span class="tooltip">Si nos dejas el link, cargaremos la ruta al GPS por ti.</span>
+                    </div>
+                </div>
+
+                <!-- 2. Contactos Satelitales -->
+                <div class="conf-box">
+                    <h3 class="conf-title"><i class="fa-solid fa-message text-primary"></i> 2. Receptores de Check-In Automáticos</h3>
+                    <p class="body-xs text-variant mb-md">Ingresa hasta 3 correos o celulares (con código de país ej: +569). Ellos recibirán tus mensajes gratuitos como "Iniciando marcha" o "Acampando".</p>
+                    
+                    <div class="conf-grid">
+                        <div class="conf-input-group">
+                            <label>Contacto 1 (Requerido)</label>
+                            <input type="text" placeholder="Email o Celular" required>
+                        </div>
+                        <div class="conf-input-group">
+                            <label>Contacto 2 (Opcional)</label>
+                            <input type="text" placeholder="Email o Celular">
+                        </div>
+                        <div class="conf-input-group">
+                            <label>Contacto 3 (Opcional)</label>
+                            <input type="text" placeholder="Email o Celular">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Seguro y Emergencias -->
+                <div class="conf-box">
+                    <h3 class="conf-title"><i class="fa-solid fa-briefcase-medical text-primary"></i> 3. Información Médica y de Rescate</h3>
+                    
+                    <div class="form-group mb-md">
+                        <label class="body-xs text-variant" style="font-weight: 500;">Teléfono de Emergencia (Familiar/Amigo)</label>
+                        <input type="tel" class="custom-input mt-xs" placeholder="+56 9 1234 5678" required id="emergency-phone">
+                    </div>
+                    <div class="form-group mb-md">
+                        <label class="body-xs text-variant" style="font-weight: 500;">Alergias severas o Condiciones Médicas Relevantes</label>
+                        <input type="text" class="custom-input mt-xs" placeholder="Ej. Alérgico a Penicilina, Asma (Opcional)" id="medical-data">
+                    </div>
+
+                    <div class="conf-input-group mt-sm">
+                        <label>¿Cuentas con Seguro de Rescate? (Opcional)</label>
+                        <input type="text" placeholder="Ej: Global Rescue, Seguro Club Alemán Andino...">
+                        <span class="tooltip">Vital en caso de activar el botón SOS para gestionar el pago del helicóptero/ambulancia.</span>
+                    </div>
+                </div>
+
+                <button type="button" class="btn-primary btn-xl glow-hover mt-lg" style="width: 100%;" onclick="finishOnboarding()">GUARDAR CONFIGURACIÓN Y FINALIZAR</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/es.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
